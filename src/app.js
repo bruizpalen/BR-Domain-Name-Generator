@@ -26,23 +26,27 @@ function createString() {
       }
     }
   }
+  return domains;
+}
 
-  const domainsElement = document.getElementById("domains");
-  domainsElement.innerHTML = ""; // Clear the previous content
-  const randomNumbers = getFiveRandomeIndexesOfAnArray(domains);
+const generateButton = document.getElementById("generateButton");
+
+generateButton.addEventListener("click", function() {
+  const domainsArray = createString();
+  const randomNumbers = getFiveRandomeIndexesOfAnArray(domainsArray);
+  const domainsContainer = document.getElementById("domains");
+  domainsContainer.innerHTML = "";
   for (const number of randomNumbers) {
     const paragraph = document.createElement("p");
-    paragraph.textContent = domains[number];
-    domainsElement.appendChild(paragraph);
+    paragraph.textContent = domainsArray[number];
+    domainsContainer.appendChild(paragraph);
   }
-  // domains.forEach((domain) => {
-  //   const paragraph = document.createElement("p");
-  //   paragraph.textContent = domain;
-  //   excuseElement.appendChild(paragraph);
-  // });
-  // const excuseElement = document.getElementById("excuse");
-  const generateButton = document.getElementById("generateButton");
   const reloadButton = document.getElementById("reloadButton");
-  // excuseElement.innerText = result;
   reloadButton.classList.remove("hidden");
-}
+});
+
+const reloadButton = document.getElementById("reloadButton");
+reloadButton.addEventListener("click", function() {
+  location.reload();
+});
+
